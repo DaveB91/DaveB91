@@ -7,7 +7,7 @@ add_hook('EmailPreSend', 1, function($vars)
     if (in_array($vars['messagename'], array('Support Ticket Reply')))
     {
 		$ticketid = $vars['relid'];
-        $replies = Capsule::select(Capsule::raw('SELECT * FROM tblticketreplies WHERE tid = "' . $vars['relid'] . '" ORDER BY id DESC'));
+		$replies = Capsule::select(Capsule::raw('SELECT * FROM tblticketreplies WHERE tid = "' . $vars['relid'] . '" ORDER BY id DESC'));
 		$companyname = Capsule::select(Capsule::raw('SELECT * FROM tblconfiguration WHERE setting = "CompanyName"'));
 		$companyname = $companyname[0]->value;
 		$r = 0;
