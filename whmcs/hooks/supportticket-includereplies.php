@@ -16,11 +16,13 @@ add_hook('EmailPreSend', 1, function($vars) {
 					$registereduser = Capsule::select(Capsule::raw('SELECT * FROM tblclients WHERE id = "' . $v->userid . '"'));
 					$sender = $registereduser[0]->email;
 				}
-				else
+				else {
 					$sender = $v->email;
-			}	
-			else
+				}
+			}
+			else {
 				$sender = $v->admin.' ['.$companyname.']';
+			}
 			$merge_fields['support_ticket_replies'][] = 'On '.$v->date.', '.$sender.' wrote:<br/>'.nl2br($v->message);
 		}
 		$r = $r + 1;
